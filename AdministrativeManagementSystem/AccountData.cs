@@ -33,7 +33,7 @@ namespace AdministrativeManagementSystem
 
         public int DeleteUser(Account user)
         {
-            return sqlData.DeleteUser(user.email);
+            return sqlData.DeleteUser(user.userID);
         }
     }
 }

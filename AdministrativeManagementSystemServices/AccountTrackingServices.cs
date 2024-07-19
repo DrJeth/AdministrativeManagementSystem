@@ -10,9 +10,9 @@ namespace AdministrativeManagementSystemServices
     {
         AccountGetServices getservices = new AccountGetServices();
 
-        public bool CheckIfUserNameExists(string email)
+        public bool CheckIfUserNameExists(string username)
         {
-            bool result = getservices.GetUser(email) != null;
+            bool result = getservices.GetUser(username) != null;
             return result;
         }
 

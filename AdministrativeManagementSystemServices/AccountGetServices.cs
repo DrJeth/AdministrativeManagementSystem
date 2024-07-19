@@ -13,15 +13,15 @@ namespace AdministrativeManagementSystemServices
             return accountdata.GetUsers();
         }
 
-        public Account Getusersemail(string email)
+        public List<Account> Getusersemail(string email)
         {
-            Account acc = new Account();
+            List<Account> acc = new List<Account>();
 
             foreach (var user in GetAllUsers())
             {
                 if (user.email == email)
                 {
-                    acc = user;
+                    acc.Add(user);
                 }
             }
             return acc;

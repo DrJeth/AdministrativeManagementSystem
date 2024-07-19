@@ -19,7 +19,7 @@ namespace AdministrativeManagementSystemServices
 
             if (recordstracking.CheckIfUserNameExists(user.username))
             {
-                result = userData.AddUser(user) > 0;
+                userData.AddUser(user);
             }
 
             return result;
@@ -55,7 +55,7 @@ namespace AdministrativeManagementSystemServices
         {
             bool result = false;
 
-            if (recordstracking.CheckIfUserNameExists(user.username))
+            if (recordstracking.CheckIfUserNameExists(user.userID))
             {
                 result = userData.DeleteUser(user) > 0;
             }

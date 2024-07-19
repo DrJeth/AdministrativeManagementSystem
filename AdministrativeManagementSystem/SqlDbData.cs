@@ -12,7 +12,8 @@ namespace AdministrativeManagementSystemData
     public class SqlDbData
     {
         string connectionString
-        = "Data Source =LAPTOP-Q6PHMPP5\\SQLEXPRESS; Initial Catalog = AdministrativeManagement; Integrated Security = True;";
+        //"Data Source =LAPTOP-Q6PHMPP5\\SQLEXPRESS; Initial Catalog = AdministrativeManagement; Integrated Security = True;";
+        = "Server=tcp:20.189.122.172;Database=AdministrativeManagement;User Id=sa; Password=Jethro2003@pup";
 
         SqlConnection sqlConnection;
 
@@ -59,7 +60,7 @@ namespace AdministrativeManagementSystemData
         {
             int success;
 
-            string insertStatement = "INSERT INTO users VALUES (@email, @username, @password, @userID, @contactnumber)";
+            string insertStatement = "INSERT INTO Accounts VALUES (@email, @username, @password, @userID, @contactnumber)";
 
             SqlCommand insertCommand = new SqlCommand(insertStatement, sqlConnection);
 
@@ -81,13 +82,16 @@ namespace AdministrativeManagementSystemData
         {
             int success;
 
-            string updateStatement = $"UPDATE users SET password = @password WHERE email = @email";
+            string updateStatement = $"UPDATE Accounts SET email = @email, username = @username, password = @password, contactnumber = @contactnumber WHERE userID = @userID";
 
             SqlCommand updateCommand = new SqlCommand(updateStatement, sqlConnection);
             sqlConnection.Open();
 
-            updateCommand.Parameters.AddWithValue("@password", password);
             updateCommand.Parameters.AddWithValue("@email", email);
+            updateCommand.Parameters.AddWithValue("@username", username);
+            updateCommand.Parameters.AddWithValue("@password", password);
+            updateCommand.Parameters.AddWithValue("@userID", userID);
+            updateCommand.Parameters.AddWithValue("@contactnumber", contactnumber);
 
             success = updateCommand.ExecuteNonQuery();
 
@@ -96,15 +100,15 @@ namespace AdministrativeManagementSystemData
             return success;
         }
 
-        public int DeleteUser(string username)
+        public int DeleteUser(string userID)
         {
             int success;
 
-            string deleteStatement = $"DELETE FROM users WHERE username = @username";
+            string deleteStatement = $"DELETE FROM Accounts WHERE userID = @userID";
             SqlCommand deleteCommand = new SqlCommand(deleteStatement, sqlConnection);
             sqlConnection.Open();
 
-            deleteCommand.Parameters.AddWithValue("@username", username);
+            deleteCommand.Parameters.AddWithValue("@userID", userID);
 
             success = deleteCommand.ExecuteNonQuery();
 
