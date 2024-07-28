@@ -34,25 +34,25 @@ namespace AdministrativeManagementSystemAPI.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddUser(Account request)
+        public JsonResult AddUser(Account identity)
         {
-            var result = _accountRecordServices.CreateUser(request.email, request.username, request.password, request.userID, request.contactnumber);
+            var result = _accountRecordServices.CreateUser(identity.email, identity.username, identity.password, identity.userID, identity.contactnumber);
             return new JsonResult(result);
         }
 
         [HttpPatch]
-        public JsonResult UpdateUser(Account request)
+        public JsonResult UpdateUser(Account identity)
         {
-            var result = _accountRecordServices.UpdateUser(request.email, request.username, request.password, request.userID, request.contactnumber);
+            var result = _accountRecordServices.UpdateUser(identity.email, identity.username, identity.password, identity.userID, identity.contactnumber);
             return new JsonResult(result);
         }
 
         [HttpDelete]
-        public JsonResult DeleteUser(Account request)
+        public JsonResult DeleteUser(Account identity)
         {
             var deleteuserID = new AdministrativeManagementSystemModels.Account
             {
-                userID = request.userID
+                userID = identity.userID
             };
 
             var result = _accountRecordServices.DeleteUser(deleteuserID);
